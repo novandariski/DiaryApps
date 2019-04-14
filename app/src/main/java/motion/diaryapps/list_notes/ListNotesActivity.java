@@ -38,8 +38,11 @@ public class ListNotesActivity extends AppCompatActivity {
         initToolbar();
 
         // TODO: 4/12/19 panggil initRecyclerView() disini
+        initRecyclerView();
+
 
         // TODO: 4/12/19 panggil initDummy() disini
+        initDummy();
     }
 
     /**
@@ -48,7 +51,7 @@ public class ListNotesActivity extends AppCompatActivity {
     public void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Diary Apps");
+        getSupportActionBar().setTitle("My Diarys");
     }
 
     /**
@@ -57,14 +60,13 @@ public class ListNotesActivity extends AppCompatActivity {
     public void initRecyclerView() {
         // TODO: 4/12/19 -> ganti null dengan component RecyclerView pada activity_list_notes
         // hint: gunakan findViewById(R.id.xxxxx);
-        mRecyclerView = null;
+        mRecyclerView = findViewById(R.id.rvListNotes);
 
         // TODO: 4/12/19 -> ganti null dengan objek ListNotesAdapter
-        mAdapter = null;
+        mAdapter = new ListNotesAdapter(mLists, this);
 
         // TODO: 4/12/19 -> ganti null dengan objek LinearLayoutManager
-        mLayoutManager = null;
-
+        mLayoutManager = new LinearLayoutManager(this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -78,7 +80,15 @@ public class ListNotesActivity extends AppCompatActivity {
         // hint: lakukan setelah menambahkan constructor pada ListNotesModel
         // untuk date gunakan Tools.getCurrentDateISO8601()
 
-        mLists.add(new ListNotesModel());
+        String imageUrl = "https://blog.nationalgeographic.org/wp-content/uploads/2014/01/De-Jong-Butynski-Huri-Hills-Kenya.jpg";
+        mLists.add(new ListNotesModel("ID001", imageUrl, "Paradise Lost", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("ID002", imageUrl, "Paradise Lost", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("ID003", imageUrl, "Paradise Lost", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("ID004", imageUrl, "Paradise Lost", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("ID005", imageUrl, "Paradise Lost", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("ID006", imageUrl, "Paradise Lost", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("ID007", imageUrl, "Paradise Lost", Tools.getCurrentDateISO8601()));
+        mLists.add(new ListNotesModel("ID008", imageUrl, "Paradise Lost", Tools.getCurrentDateISO8601()));
 
         mAdapter.notifyDataSetChanged();
     }
